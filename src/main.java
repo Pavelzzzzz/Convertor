@@ -50,29 +50,7 @@ public class main extends JDialog {
                     startTableName,
                     insertCommand.indexOf(' ', startTableName));
 
-            Map<String, String> fields = new LinkedHashMap<>();
-            String[] fieldsName = insertCommand.substring(
-                    insertCommand.indexOf('(', startTableName) + 1,
-                    insertCommand.indexOf(')', startTableName))
-                    .split(",");
-
-            int startFieldsValues = insertCommand.indexOf("VALUES") + 6;
-            String[] fieldsValues = insertCommand.substring(
-                    insertCommand.indexOf('(', startFieldsValues) + 1,
-                    insertCommand.indexOf(')', startFieldsValues))
-                    .split(",");
-
-            if (fieldsName.length != fieldsValues.length) {
-                throw new CountValues();
-            }
-
-            for(int index = 0; index < fieldsName.length; index++){
-                fields.put(
-                        fieldsName[index].trim(),
-                        (fieldsValues[index].trim().contains("'"))?
-                fieldsValues[index].trim().split("'")[1]
-                        :fieldsValues[index].trim());
-            }
+            Map<String, String> fields = getFieldsFromCommand(insertCommand, startTableName);
 
             StringBuilder result  = new StringBuilder();
 
@@ -95,6 +73,33 @@ public class main extends JDialog {
             textArea2.setCaretColor(new Color(255, 0, 0));
         }
         //dispose();
+    }
+
+    private Map<String, String> getFieldsFromCommand(String insertCommand, int fieldsStart) throws CountValues {
+        Map<String, String> fields = new LinkedHashMap<>();
+        String[] fieldsName = insertCommand.substring(
+                insertCommand.indexOf('(', fieldsStart) + 1,
+                insertCommand.indexOf(')', fieldsStart))
+                .split(",");
+
+        int startFieldsValues = insertCommand.indexOf("VALUES") + 6;
+        String[] fieldsValues = insertCommand.substring(
+                insertCommand.indexOf('(', startFieldsValues) + 1,
+                insertCommand.indexOf(')', startFieldsValues))
+                .split(",");
+
+        if (fieldsName.length != fieldsValues.length) {
+            throw new CountValues();
+        }
+
+        for(int index = 0; index < fieldsName.length; index++){
+            fields.put(
+                    fieldsName[index].trim(),
+                    (fieldsValues[index].trim().contains("'"))?
+                            fieldsValues[index].trim().split("'")[1]
+                            :fieldsValues[index].trim());
+        }
+        return fields;
     }
 
 
