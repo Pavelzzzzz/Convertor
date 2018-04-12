@@ -1,4 +1,5 @@
 import exception.CountValues;
+import exception.FailCommandFormat;
 import exception.PKException;
 import exception.TableNameException;
 import service.Worker;
@@ -57,6 +58,10 @@ public class main extends JDialog {
 
             try {
 
+                if (!insertCommand.contains("INTO ")) {
+                    throw new FailCommandFormat();
+                }
+
                 int startTableName = insertCommand.indexOf("INTO ") + 5;
                 String tableName = insertCommand.substring(
                         startTableName,
@@ -76,6 +81,10 @@ public class main extends JDialog {
             } catch (TableNameException e) {
                 textArea2.setText(
                         "Error. Table name is not valid");
+                textArea2.setForeground(Color.red);
+            } catch (FailCommandFormat failCommandFormat) {
+                textArea2.setText(
+                        "Error. Command format is nzot valid");
                 textArea2.setForeground(Color.red);
             }
         }
