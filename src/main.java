@@ -127,18 +127,18 @@ public class main extends JDialog {
      */
     private void $$$setupUI$$$() {
         contentPane = new JPanel();
-        contentPane.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(2, 6, new Insets(10, 10, 10, 10), 20, 0));
+        contentPane.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(2, 3, new Insets(10, 10, 10, 10), 20, 0));
         contentPane.setBorder(BorderFactory.createTitledBorder(null, "Convertor", TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION, this.$$$getFont$$$("SansSerif", -1, 22, contentPane.getFont())));
         final JScrollPane scrollPane1 = new JScrollPane();
         contentPane.add(scrollPane1, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, new Dimension(300, 200), new Dimension(400, 500), new Dimension(1200, 2000), 0, false));
         textArea1 = new JTextArea();
-        textArea1.setEditable(false);
+        textArea1.setEditable(true);
         Font textArea1Font = this.$$$getFont$$$(null, -1, 14, textArea1.getFont());
         if (textArea1Font != null) textArea1.setFont(textArea1Font);
         textArea1.setText("");
         scrollPane1.setViewportView(textArea1);
         final JScrollPane scrollPane2 = new JScrollPane();
-        contentPane.add(scrollPane2, new com.intellij.uiDesigner.core.GridConstraints(0, 5, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, new Dimension(300, 200), new Dimension(400, 500), new Dimension(1200, 2000), 0, false));
+        contentPane.add(scrollPane2, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, new Dimension(300, 200), new Dimension(400, 500), new Dimension(1200, 2000), 0, false));
         textArea2 = new JTextArea();
         Font textArea2Font = this.$$$getFont$$$(null, -1, 14, textArea2.getFont());
         if (textArea2Font != null) textArea2.setFont(textArea2Font);
@@ -150,7 +150,7 @@ public class main extends JDialog {
         if (buttonOKFont != null) buttonOK.setFont(buttonOKFont);
         buttonOK.setHideActionText(false);
         buttonOK.setText("-> convert ->");
-        contentPane.add(buttonOK, new com.intellij.uiDesigner.core.GridConstraints(1, 1, 1, 3, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 1, false));
+        contentPane.add(buttonOK, new com.intellij.uiDesigner.core.GridConstraints(1, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 1, false));
     }
 
     /**
