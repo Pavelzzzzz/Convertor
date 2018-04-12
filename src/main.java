@@ -1,8 +1,10 @@
+import exception.CountValues;
+import service.Worker;
+
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class main extends JDialog {
@@ -45,27 +47,18 @@ public class main extends JDialog {
             String insertCommand = textArea1.getText();
             textArea2.setCaretColor(new Color(255, 255, 255));
 
+            Worker worker = new Worker();
+
             int startTableName = insertCommand.indexOf("INTO ") + 5;
             String tableName = insertCommand.substring(
                     startTableName,
                     insertCommand.indexOf(' ', startTableName));
 
-            Map<String, String> fields = getFieldsFromCommand(insertCommand, startTableName);
+            Map<String, String> fields = worker.getFieldsFromCommand(insertCommand, startTableName);
 
-            StringBuilder result  = new StringBuilder();
 
-            result.append(tableName);
-            result.append('\n');
 
-            for (Map.Entry<String, String> field
-                    : fields.entrySet()){
-                result.append(field.getKey());
-                result.append(" --> ");
-                result.append(field.getValue());
-                result.append('\n');
-            }
-
-            textArea2.setText(result.toString());
+            textArea2.setText(worker.fieldsMapToString(tableName, fields));
         }
         catch (CountValues countValues){
             textArea2.setText(
@@ -75,43 +68,10 @@ public class main extends JDialog {
         //dispose();
     }
 
-    private Map<String, String> getFieldsFromCommand(String insertCommand, int fieldsStart) throws CountValues {
-        Map<String, String> fields = new LinkedHashMap<>();
-        String[] fieldsName = insertCommand.substring(
-                insertCommand.indexOf('(', fieldsStart) + 1,
-                insertCommand.indexOf(')', fieldsStart))
-                .split(",");
-
-        int startFieldsValues = insertCommand.indexOf("VALUES") + 6;
-        String[] fieldsValues = insertCommand.substring(
-                insertCommand.indexOf('(', startFieldsValues) + 1,
-                insertCommand.indexOf(')', startFieldsValues))
-                .split(",");
-
-        if (fieldsName.length != fieldsValues.length) {
-            throw new CountValues();
-        }
-
-        for(int index = 0; index < fieldsName.length; index++){
-            fields.put(
-                    fieldsName[index].trim(),
-                    (fieldsValues[index].trim().contains("'"))?
-                            fieldsValues[index].trim().split("'")[1]
-                            :fieldsValues[index].trim());
-        }
-        return fields;
-    }
-
-
-
     public static void main(String[] args) {
         main dialog = new main();
         dialog.pack();
         dialog.setVisible(true);
         System.exit(0);
     }
-}
-
-class CountValues extends Exception{
-
 }
